@@ -2,7 +2,7 @@
 using SQLite;
 namespace XamMedicEvent
 {
-    class Event : Attribute
+    public class Events : Attribute
     {
         [PrimaryKey, AutoIncrement]  //These are attributes that define the property below it
         public int Id { get; set; }

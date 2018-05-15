@@ -9,7 +9,7 @@ namespace XamMedicEvent
     [Activity(Label = "Medical Event Logger", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
-        Event myEvent = new Event();
+        Events myEvent = new Events();
         private TextView dateDisplay;
         private Button dateSelectButton;
 
@@ -103,7 +103,17 @@ namespace XamMedicEvent
 
             SaveButton.Click += (sender, eventArgs) =>
             {
-           //     DataManager.AddItem(myEvent);
+                try
+                {
+                    DataManager.AddItem(myEvent);
+                    Toast.MakeText(this, "Success! Event saved", ToastLength.Long).Show();
+                }
+                catch (Exception e)
+                {
+
+                    Toast.MakeText(this, "Not working " + e.Message, ToastLength.Long).Show();
+                }
+
 
             };
 

@@ -18,18 +18,18 @@ namespace XamMedicEvent
         }
 
         //https://docs.microsoft.com/en-us/xamarin/android/data-cloud/data-access/using-sqlite-orm
-        public static IEnumerable<Event> GetData()
+        public static IEnumerable<Events> GetItems()
         {
-            if (db.Table<Event>().Count() > 0)
+            if (db.Table<Events>().Count() > 0)
             {
-                return db.Query<Event>("select * from Events");
+                return db.Query<Events>("select * from Events");
             }
             else
             {
-              //making some fake items to stop the system from crashing when the DB doesn't connect
-                List<Event> fakeitem = new List<Event>();
+                //making some fake items to stop the system from crashing when the DB doesn't connect
+                List<Events> fakeitem = new List<Events>();
                 //make a single item
-                Event item = new Event();
+                Events item = new Events();
                 // item.Id = 1;
                 item.Date = DateTime.Now.Date;
                 item.Time = DateTime.Now.Date;
@@ -44,7 +44,7 @@ namespace XamMedicEvent
 
 
 
-        public static void AddItem(Event NewEvent)
+        public static void AddItem(Events NewEvent)
         {//make sure ID = null
             try
             {
@@ -78,7 +78,7 @@ namespace XamMedicEvent
             // https://developer.xamarin.com/guides/cross-platform/application_fundamentals/data/part_3_using_sqlite_orm/ 
             try
             {
-                db.Delete<Event>(listid);
+                db.Delete<Events>(listid);
             }
             catch (Exception ex)
             {
