@@ -3,6 +3,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Support.V7.App;
 using System;
+using System.IO;
 
 namespace XamMedicEvent
 {
@@ -29,8 +30,14 @@ namespace XamMedicEvent
         private Button SaveButton;
         private Button HistoryButton;
 
+        //static string dbName = "EventsDB.db";
+        //string dbPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.ToString(), dbName);
+        DataManager myDbManager;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            myDbManager = new DataManager();
+
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
@@ -42,8 +49,8 @@ namespace XamMedicEvent
             dateSelectButton = FindViewById<Button>(Resource.Id.dateSelectButton);
             dateSelectButton.Click += (sender, eventArgs) =>
             {
-                DateClickEvent();
                 TimeClickEvent();
+                DateClickEvent();
             };
 
 
@@ -95,7 +102,7 @@ namespace XamMedicEvent
 
             //Meal Type
             edtMealType = FindViewById<EditText>(Resource.Id.edtMeal);
-            myEvent.Food = edtMealType.Text;
+            // myEvent.Food = edtMealType.Text;
 
             //Save button and History
             SaveButton = FindViewById<Button>(Resource.Id.btnSave);
@@ -103,17 +110,38 @@ namespace XamMedicEvent
 
             SaveButton.Click += (sender, eventArgs) =>
             {
-                try
-                {
-                    DataManager.AddItem(myEvent);
-                    Toast.MakeText(this, "Success! Event saved", ToastLength.Long).Show();
-                }
-                catch (Exception e)
-                {
+                //Read the specific parth and see if a db is there
+                Java.IO.File filePath = new Java.IO.File(myDbManager.databasePath);
 
-                    Toast.MakeText(this, "Not working " + e.Message, ToastLength.Long).Show();
-                }
+                myEvent.Food = edtMealType.Text;
+                if (filePath.Exists()) //if it exists then save to it
+                {
+                    try
+                    {
+                        myDbManager.AddItem(myDbManager.FakeEntry());
+                        //  myDbManager.AddItem(myEvent);
+                        Toast.MakeText(this, "Success! Event saved", ToastLength.Long).Show();
+                    }
+                    catch (Exception e)
+                    {
+                        try
+                        {
+                            myDbManager.AddItem(myDbManager.FakeEntry());
+                        }
+                        catch (Exception)
+                        {
 
+                            Toast.MakeText(this, "Not working tried fake data " + e.Message, ToastLength.Long).Show();
+                        }
+
+                        Toast.MakeText(this, "Not working " + e.Message, ToastLength.Long).Show();
+                    }
+                }
+                else
+                {
+                    Toast.MakeText(this, "DB not found" + filePath.AbsolutePath.ToString(), ToastLength.Long).Show();
+
+                }
 
             };
 

@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="DataManager.cs" />
     <Compile Include="DatePickerFragment.cs" />
+    <Compile Include="EventsNoId.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="ReportActivity.cs" />
