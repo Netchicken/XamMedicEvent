@@ -18,7 +18,7 @@ namespace XamMedicEvent
             databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), databaseName);// Documents folder
 
             db = new SQLiteConnection(databasePath);
-           
+
             // Initializes a new instance of the Database. if the database doesn't exist, it will create the database and all the tables.
             db.CreateTable<Events>();
         }
@@ -42,10 +42,25 @@ namespace XamMedicEvent
             }
         }
 
+        public string CountEntries()
+        {
+            int count = db.Query<Events>("select * from Events").Count;
+            if (count > 0)
+            {
+                return count.ToString();
+            }
+            else
+            {
+                return " no entries ";
+
+            }
+
+        }
+
         public Events FakeEntry()
         {
             Events item = new Events();
-            // item.Id = 1;
+            item.Id = 1;
             item.Date = DateTime.Now.Date;
             item.Time = DateTime.Now.Date;
             item.Hours = 2;

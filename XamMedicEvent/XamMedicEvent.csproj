@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="DataManager.cs" />
     <Compile Include="DatePickerFragment.cs" />
+    <Compile Include="DataAdapter.cs" />
     <Compile Include="EventsNoId.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="MainActivity.cs" />
@@ -113,6 +114,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\reports.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ListItem.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

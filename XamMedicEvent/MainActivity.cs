@@ -118,9 +118,12 @@ namespace XamMedicEvent
                 {
                     try
                     {
-                        myDbManager.AddItem(myDbManager.FakeEntry());
-                        //  myDbManager.AddItem(myEvent);
+                        // myDbManager.AddItem(myDbManager.FakeEntry());
+                        myDbManager.AddItem(myEvent);
+
                         Toast.MakeText(this, "Success! Event saved", ToastLength.Long).Show();
+
+
                     }
                     catch (Exception e)
                     {
@@ -132,22 +135,29 @@ namespace XamMedicEvent
                         {
 
                             Toast.MakeText(this, "Not working tried fake data " + e.Message, ToastLength.Long).Show();
+
                         }
 
                         Toast.MakeText(this, "Not working " + e.Message, ToastLength.Long).Show();
+
                     }
                 }
                 else
                 {
                     Toast.MakeText(this, "DB not found" + filePath.AbsolutePath.ToString(), ToastLength.Long).Show();
-
                 }
+
+                //output a count of the entries
+                //The System.Environment.SpecialFolder.Personal type maps to the path /data/data/[your.package.name]/files. This is a private directory to your application so you won't be able to see these files using a file browser unless it has root privileges.
+                Toast.MakeText(this, "There are " + myDbManager.CountEntries() + " in the database", ToastLength.Long).Show();
 
             };
 
             HistoryButton.Click += (sender, eventArgs) =>
             {
                 //Open Results page
+                var report = new Android.Content.Intent(this, typeof(ReportActivity));
+                StartActivity(report);
             };
         }
 
