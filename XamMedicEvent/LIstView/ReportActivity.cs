@@ -53,10 +53,10 @@ namespace XamMedicEvent
 
         private void EventList_Click(object sender, AdapterView.ItemClickEventArgs e)
         {
-           // var LV = sender as ListView;
-          
-            
-            //so we are not really getting the data in that view, but getting the item from the db in the position of the one you click on in the list. It has nothing to do with the ID at all, just the poition in the list. 0,1,2,3,4 etc
+            // var LV = sender as ListView;
+
+
+            //so we are not really getting the data in that view, but getting the row ID of the item from the db in the position of the one you click on in the list. It has nothing to do with the ID at all, just the poition in the list. 0,1,2,3,4 etc
 
             var SingleEvent = myList[e.Position];
             mydm.DeleteItem(SingleEvent.Id);

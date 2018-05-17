@@ -126,13 +126,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/edtMeal"
+            android:layout_alignParentBottom="true"
             android:id="@+id/btnSave" />
+        <Button
+            android:text="Charts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtMeal"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/btnChart"
+            android:layout_centerInParent="false"
+            android:layout_centerHorizontal="true" />
         <Button
             android:text="View History"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edtMeal"
-            android:layout_alignParentRight="true"
-            android:id="@+id/btnHistory" />
+            android:id="@+id/btnHistory"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 </ScrollView>

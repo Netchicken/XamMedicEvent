@@ -29,6 +29,7 @@ namespace XamMedicEvent
         private EditText edtMealType;
         private Button SaveButton;
         private Button HistoryButton;
+        private Button ChartButton;
 
         //static string dbName = "EventsDB.db";
         //string dbPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.ToString(), dbName);
@@ -107,10 +108,11 @@ namespace XamMedicEvent
             //Save button and History
             SaveButton = FindViewById<Button>(Resource.Id.btnSave);
             HistoryButton = FindViewById<Button>(Resource.Id.btnHistory);
+            ChartButton = FindViewById<Button>(Resource.Id.btnChart);
 
             SaveButton.Click += (sender, eventArgs) =>
             {
-                //Read the specific parth and see if a db is there
+                //Read the specific path and see if a db is there
                 Java.IO.File filePath = new Java.IO.File(myDbManager.databasePath);
 
                 myEvent.Food = edtMealType.Text;
@@ -118,7 +120,6 @@ namespace XamMedicEvent
                 {
                     try
                     {
-                        // myDbManager.AddItem(myDbManager.FakeEntry());
                         myDbManager.AddItem(myEvent);
 
                         Toast.MakeText(this, "Success! Event saved", ToastLength.Long).Show();
@@ -130,11 +131,12 @@ namespace XamMedicEvent
                         try
                         {
                             myDbManager.AddItem(myDbManager.FakeEntry());
+                            Toast.MakeText(this, "Success! Fake Data saved", ToastLength.Long).Show();
                         }
                         catch (Exception)
                         {
 
-                            Toast.MakeText(this, "Not working tried fake data " + e.Message, ToastLength.Long).Show();
+                            Toast.MakeText(this, "Not working tried fake data didn't work either " + e.Message, ToastLength.Long).Show();
 
                         }
 
@@ -153,6 +155,14 @@ namespace XamMedicEvent
 
             };
 
+            ChartButton.Click += (sender, eventArgs) =>
+            {
+
+                Toast.MakeText(this, "Not Implimented yet", ToastLength.Long).Show();
+                //Open Results page
+
+                // StartActivity(Chart);
+            };
             HistoryButton.Click += (sender, eventArgs) =>
             {
                 //Open Results page
