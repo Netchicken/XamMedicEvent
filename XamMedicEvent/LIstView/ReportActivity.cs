@@ -46,8 +46,11 @@ namespace XamMedicEvent
             meal = FindViewById<TextView>(Resource.Id.tvlistMeal);
             //listview
             EventList = FindViewById<ListView>(Resource.Id.listView1);
+
             myList = (List<Events>)mydm.GetItems();
+
             EventList.Adapter = new DataAdapter(this, myList);
+
             EventList.ItemClick += EventList_Click;
         }
 
